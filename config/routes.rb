@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   scope path: '/show' do
     resources :map, path: '', only: [:index]
   end
