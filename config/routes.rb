@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  scope path: '/show' do
+    resources :map, path: '', only: [:index]
+  end
+
   scope path: '/api' do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
       resource :gps, only: [:create]
