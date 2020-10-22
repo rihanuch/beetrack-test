@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Multiple Markers Google Maps API v3</title>
+	<meta charset="utf-8" />
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+</head>
+<body>
+    <div id="map" style="width: 800px; height: 800px;"></div>
+    <%= javascript_tag do %>
+        var locations = []
+        <% @waypoints.each do |waypoint| %>
+        <%# cast name as <%== j waypoint[0] %>
+        <%# this weay we can force the waypoint to be a string an js does not look for a var %>
+            locations.push(["<%== j waypoint[0] %>", <%= waypoint[1] %>, <%= waypoint[2] %>]) 
+        <% end %> 
+    <% end %>
+  <script type="text/javascript">
+
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(-33.452370, -70.646702),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+</body>
+</html>
