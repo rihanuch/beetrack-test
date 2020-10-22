@@ -1,6 +1,8 @@
 class Vehicle < ApplicationRecord
   has_many :waypoints
 
+  # get most recent waypoint sent to api
+  # return first one as we only need one
   def last_location
     waypoints.order(sent_at: :desc).first
   end
