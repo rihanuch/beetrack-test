@@ -13,7 +13,7 @@ RSpec.describe GpsJob, type: :job do
 
   describe 'POST /create' do
     context 'with valid parameters and unexisting vehicle' do
-      let(:simulate_post) do 
+      let(:simulate_post) do
         {
           latitude: 20.23,
           longitude: -0.59,
@@ -24,10 +24,8 @@ RSpec.describe GpsJob, type: :job do
 
       it 'enqueues a job' do
         ActiveJob::Base.queue_adapter = :test
-        expect {GpsJob.perform_later(simulate_post)}.to have_enqueued_job
-
+        expect { described_class.perform_later(simulate_post) }.to have_enqueued_job
       end
-
     end
   end
 end

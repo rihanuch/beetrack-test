@@ -2,7 +2,7 @@ class GpsJob < ApplicationJob
   queue_as :default
 
   def perform(request_params)
-      Waypoint.create(parse_params(request_params))
+    Waypoint.create(parse_params(request_params))
   end
 
   def parse_params(request_params)
@@ -13,5 +13,4 @@ class GpsJob < ApplicationJob
       vehicle: Vehicle.find_or_create_by(vehicle_identifier: request_params[:vehicle_identifier])
     }
   end
-
 end

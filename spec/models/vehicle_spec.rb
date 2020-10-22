@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Vehicle, type: :model do
-
-  before(:each) do
+  before do
     @vehicle = create(:vehicle)
   end
 
   after(:all) do
-    Vehicle.delete_all
+    described_class.delete_all
   end
 
   describe 'attributes' do
@@ -16,7 +15,7 @@ RSpec.describe Vehicle, type: :model do
     end
 
     it 'is invalid with repeated names' do
-      expect{create(:vehicle, vehicle_identifier: "HA-3454")}.to raise_error
+      expect { create(:vehicle, vehicle_identifier: "HA-3454") }.to raise_error
     end
   end
 
