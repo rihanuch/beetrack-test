@@ -1,4 +1,7 @@
 class MapController < ApplicationController
+  
+  # get most recent location of each vehicle and return
+  # (name (date), lat, long) to view map with markers
   def index
     @waypoints = []
     Vehicle.all.each do |vehicle|
