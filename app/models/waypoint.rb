@@ -8,9 +8,9 @@ end
 #
 #  id         :bigint(8)        not null, primary key
 #  vehicle_id :bigint(8)        not null
-#  lat        :float
-#  long       :float
-#  sent_at    :datetime
+#  lat        :float            not null
+#  long       :float            not null
+#  sent_at    :datetime         not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

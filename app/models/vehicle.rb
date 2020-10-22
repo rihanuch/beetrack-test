@@ -11,7 +11,11 @@ end
 # Table name: vehicles
 #
 #  id                 :bigint(8)        not null, primary key
-#  vehicle_identifier :string
+#  vehicle_identifier :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#
+# Indexes
+#
+#  index_vehicles_on_vehicle_identifier  (vehicle_identifier) UNIQUE
 #
