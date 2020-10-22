@@ -1,5 +1,9 @@
 class Vehicle < ApplicationRecord
   has_many :waypoints
+
+  def last_location
+    waypoints.order(sent_at: :desc).first
+  end
 end
 
 # == Schema Information
